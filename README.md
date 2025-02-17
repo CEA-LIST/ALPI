@@ -6,7 +6,7 @@ The preprint is on [arxiv](https://arxiv.org/abs/2407.17197) and the reference o
 ```
 @inproceedings{lahlali2025alpi,
   title={ALPI: Auto-Labeller with Proxy Injection for 3D Object Detection using 2D Labels Only},
-  author={Lahlali, Saad and Granger, Nicolas and Borgne, Herv{\'e} Le and Pham, Quoc-Cuong},
+  author={Lahlali, Saad and Granger, Nicolas and Le Borgne, Herv{\'e} and Pham, Quoc-Cuong},
   booktitle={IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
   year={2025}
 }
