@@ -80,7 +80,7 @@ Our project is based on the same environment as Frustum ConvNet.
     ```
 
 -----
-Here are the rewritten instructions for your `readme.md` file to explain how to run the code, including details on the script arguments, running steps individually, and executing the entire process at once.
+Here are the rewritten instructions for your `readme.md` file to explain how to run the code, including details on the script arguments, running steps individually, and executing the entire process at once. 
 
 -----
 
