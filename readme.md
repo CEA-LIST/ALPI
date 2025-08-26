@@ -11,8 +11,6 @@ This repository contains the official PyTorch implementation for the paper:
 
 ### **🖼️ Overview**
 
-![Overview of the ALPI method](figures/last_all.drawio.svg)
-
 -----
 
 ## **📝 Abstract**
@@ -53,7 +51,7 @@ Our project is based on the same environment as Frustum ConvNet.
 
   * PyTorch 1.0+
   * Python 3.6+
-  * CUDA 9.0+ 
+  * CUDA 9.0+
 
 ### **Setup**
 
@@ -80,15 +78,12 @@ Our project is based on the same environment as Frustum ConvNet.
     ```
 
 -----
-Here are the rewritten instructions for your `readme.md` file to explain how to run the code, including details on the script arguments, running steps individually, and executing the entire process at once. 
 
------
-
-## How to Run the Code
+## **🚀 How to Run the Code**
 
 This section provides instructions for running the ALPI pipeline. You can either execute each stage of the process manually or use the provided shell script to run everything in a sequence.
 
-### 1- Data Preparation 
+### **1- Data Preparation**
 
 First, download the official **KITTI 3D Object Detection Dataset** from their [website](http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d).
 
@@ -107,7 +102,7 @@ data/kitti
     └── velodyne
 ```
 
-###  2- ALPI Execution Pipeline 
+### **2- ALPI Execution Pipeline**
 
 This pipeline details the full process, from initial training with proxy objects to the final refinement step, using the pseudo-labels generated across stages. The `--ratio 30` flag will be used to control the proxy object injection rate.
 
@@ -128,7 +123,7 @@ For convenience, you can use the `all_steps_script.sh` to run the entire pipelin
 The script accepts the following optional arguments:
 
   * `--gpu GPU_TO_USE`: Specifies the GPU index to be used. Defaults to `0`.
-  * `--ratio RATIO_FAKE_TO_REAL`: Sets the percentage of proxy ("Proxy") objects to be injected during the iterative pseudo-labeling steps. 
+  * `--ratio RATIO_FAKE_TO_REAL`: Sets the percentage of proxy ("Proxy") objects to be injected during the iterative pseudo-labeling steps.
 
 #### **Step 0: Initial Training with Proxy Injection**
 
@@ -209,8 +204,16 @@ bash scripts/refinement_script.sh --gpu 0 --ratio 30
   * **Final Data Preparation:** The script `kitti/prepare_data_refine.py` is executed to prepare the training and validation sets using only the high-quality pseudo-labels collected in the previous step.
   * **Model Training (Refinement):** The final model is trained using `train/train_net_det.py` on this curated dataset.
   * **Final Evaluation & Generation:** The refined model is evaluated one last time with `test_net_det.py`, and a final set of pseudo-labels is generated using `gen_pseudo.py` to demonstrate the final model's capability.
+
 -----
 
+### **3- Using Pseudo-Labels with MMDetection3D**
+
+The high-quality pseudo-labels generated during the final **Refinement Step** can be leveraged to train powerful 3D object detection models using popular frameworks like [MMDetection3D](https://github.com/open-mmlab/mmdetection3d).
+
+To prepare the data for training, you need to create a unified label set by combining the final pseudo-labels generated on the training split with the ground-truth (`gt`) labels from the official KITTI validation split. This combined dataset can then be used as the training data for your `mmdetection3d` model.
+
+-----
 
 ## **🙏 References and Acknowledgements**
 
@@ -224,7 +227,6 @@ Our implementation is derived from their codebases, and we thank the authors for
 -----
 
 ## **📜 License**
-
 
 [CeCILL](http://www.cecill.info/licences.fr.html) licence version 2.1.
 
